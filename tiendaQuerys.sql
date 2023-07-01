@@ -32,9 +32,10 @@ SELECT nombre, TRUNCATE(precio, 0) AS precio_truncado
 FROM producto;
 
 --getFabrCodeInProductTable
-SELECT DISTINCT codigo FROM producto ;
+SELECT codigo FROM producto ;
 
--- Llista el codi dels fabricants que tenen productes en la taula producto, eliminant els codis que apareixen repetits.
+--getDistFabrCodeInProductTable
+SELECT DISTINCT codigo FROM producto ;
 -- Llista els noms dels fabricants ordenats de manera ascendent.
 -- Llista els noms dels fabricants ordenats de manera descendent.
 -- Llista els noms dels productes ordenats, en primer lloc, pel nom de manera ascendent i, en segon lloc, pel preu de manera descendent.
