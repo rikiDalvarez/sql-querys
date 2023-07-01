@@ -24,9 +24,16 @@ SELECT LOWER(nombre), precio FROM producto;
 --getNameASUpper
 SELECT nombre, LEFT(UPPER(nombre), 2) AS siglas FROM fabricante;
 
--- Llista els noms i els preus de tots els productes de la taula producto, arrodonint el valor del preu.
--- Llista els noms i els preus de tots els productes de la taula producto, truncant el valor del preu per a mostrar-lo sense cap xifra decimal.
--- Llista el codi dels fabricants que tenen productes en la taula producto.
+--getNameRoundPrice
+SELECT nombre, ROUND(precio) FROM producto;
+
+--getNameTruncatePrice
+SELECT nombre, TRUNCATE(precio, 0) AS precio_truncado
+FROM producto;
+
+--getFabrCodeInProductTable
+SELECT DISTINCT codigo FROM producto ;
+
 -- Llista el codi dels fabricants que tenen productes en la taula producto, eliminant els codis que apareixen repetits.
 -- Llista els noms dels fabricants ordenats de manera ascendent.
 -- Llista els noms dels fabricants ordenats de manera descendent.
