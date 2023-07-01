@@ -64,11 +64,14 @@ SELECT nombre, precio FROM producto ORDER BY precio DESC LIMIT 1;
 SELECT nombre FROM producto WHERE codigo_fabricante = 2;
 
 --getNamePriceFNom
-SELECT p.nombre, p.precio, f.nombre FROM producto JOIN fabricante f ON p.codigo_fabricante = f.codigo;
+SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo;
 
--- Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades. Ordena el resultat pel nom del fabricant, per ordre alfabètic.
+--getNamePriceFNomAsc
+SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f on p.codigo_fabricante = f.codigo ORDER BY f.nombre ASC;
 
--- Retorna una llista amb el codi del producte, nom del producte, codi del fabricador i nom del fabricador, de tots els productes de la base de dades.
+--getCodNamCFab
+SELECT p.codigo, p.nombre, p.codigo_fabricante, f.nombre FROM producto p JOIN fabricante f on p.codigo_fabricante = f.codigo;
+
 -- Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més barat.
 -- Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més car.
 -- Retorna una llista de tots els productes del fabricant Lenovo.
