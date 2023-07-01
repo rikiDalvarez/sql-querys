@@ -78,10 +78,18 @@ SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f on p.codig
 --getMostExpensiveNomPreFab
 SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f on p.codigo_fabricante = f.codigo ORDER BY p.precio DESC LIMIT 1;
 
--- Retorna una llista de tots els productes del fabricant Lenovo.
--- Retorna una llista de tots els productes del fabricant Crucial que tinguin un preu major que 200 €.
--- Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Sense utilitzar l'operador IN.
--- Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Fent servir l'operador IN.
+--getAllFromLenovo
+SELECT * FROM producto JOIN fabricante f ON producto.codigo_fabricante = f.codigo WHERE f.nombre = 'Lenovo';
+
+--getAllFromCrucialLess200
+SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE f.nombre = 'Crucial' AND producto.precio > 200;
+
+--getAllFromAsusHPSeagate
+SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE f.nombre = 'Asus' OR f.nombre = 'Hewlett-Packard' OR f.nombre = 'Seagate';
+
+--getAllFromAsusHPSeagateIN
+SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE f.nombre IN ('Asus', 'Hewlett-Packard', 'Seagate');
+
 -- Retorna un llistat amb el nom i el preu de tots els productes dels fabricants el nom dels quals acabi per la vocal e.
 -- Retorna un llistat amb el nom i el preu de tots els productes el nom de fabricant dels quals contingui el caràcter w en el seu nom.
 -- Retorna un llistat amb el nom de producte, preu i nom de fabricant, de tots els productes que tinguin un preu major o igual a 180 €. Ordena el resultat, en primer lloc, pel preu (en ordre descendent) i, en segon lloc, pel nom (en ordre ascendent).
