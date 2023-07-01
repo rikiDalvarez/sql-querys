@@ -40,7 +40,7 @@ SELECT DISTINCT codigo FROM producto ;
 --getAscFabrName
 SELECT nombre FROM fabricante ORDER BY nombre ASC;
 
--- Llista els noms dels fabricants ordenats de manera descendent.
+--getDescFabrName
 SELECT nombre FROM fabricante ORDER BY nombre DESC;
 
 --getNameAscPreDesc
@@ -59,9 +59,15 @@ SELECT nombre, precio FROM producto ORDER BY precio ASC LIMIT 1;
 
 --getMostExpensiveProduct
 SELECT nombre, precio FROM producto ORDER BY precio DESC LIMIT 1;
--- Llista el nom de tots els productes del fabricant el codi de fabricant del qual és igual a 2.
--- Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades.
+
+--getNameCodEql2
+SELECT nombre FROM producto WHERE codigo_fabricante = 2;
+
+--getNamePriceFNom
+SELECT p.nombre, p.precio, f.nombre FROM producto JOIN fabricante f ON p.codigo_fabricante = f.codigo;
+
 -- Retorna una llista amb el nom del producte, preu i nom de fabricant de tots els productes de la base de dades. Ordena el resultat pel nom del fabricant, per ordre alfabètic.
+
 -- Retorna una llista amb el codi del producte, nom del producte, codi del fabricador i nom del fabricador, de tots els productes de la base de dades.
 -- Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més barat.
 -- Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més car.
