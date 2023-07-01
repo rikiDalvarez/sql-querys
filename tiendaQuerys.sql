@@ -72,8 +72,12 @@ SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f on p.codig
 --getCodNamCFab
 SELECT p.codigo, p.nombre, p.codigo_fabricante, f.nombre FROM producto p JOIN fabricante f on p.codigo_fabricante = f.codigo;
 
--- Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més barat.
--- Retorna el nom del producte, el seu preu i el nom del seu fabricant, del producte més car.
+--getCheapestNomPreFab
+SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f on p.codigo_fabricante = f.codigo ORDER BY p.precio ASC LIMIT 1;
+
+--getMostExpensiveNomPreFab
+SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f on p.codigo_fabricante = f.codigo ORDER BY p.precio DESC LIMIT 1;
+
 -- Retorna una llista de tots els productes del fabricant Lenovo.
 -- Retorna una llista de tots els productes del fabricant Crucial que tinguin un preu major que 200 €.
 -- Retorna un llistat amb tots els productes dels fabricants Asus, Hewlett-Packard y Seagate. Sense utilitzar l'operador IN.
