@@ -36,7 +36,10 @@ SELECT codigo FROM producto ;
 
 --getDistFabrCodeInProductTable
 SELECT DISTINCT codigo FROM producto ;
--- Llista els noms dels fabricants ordenats de manera ascendent.
+
+--getAscFabrName
+SELECT nombre FROM fabricante ORDER BY nombre ASC;
+
 -- Llista els noms dels fabricants ordenats de manera descendent.
 -- Llista els noms dels productes ordenats, en primer lloc, pel nom de manera ascendent i, en segon lloc, pel preu de manera descendent.
 -- Retorna una llista amb les 5 primeres files de la taula fabricante.
