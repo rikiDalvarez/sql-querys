@@ -105,7 +105,9 @@ SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f ON p.codig
 --getCode&Name
 SELECT p.codigo, f.nombre FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo;
 
--- Retorna un llistat de tots els fabricants que existeixen en la base de dades, juntament amb els productes que té cadascun d'ells. El llistat haurà de mostrar també aquells fabricants que no tenen productes associats.
+--getFabrName&ProdName
+SELECT f.nombre, p.nombre FROM farbicante f LEFT JOIN producto p ON f.codigo = p.codigo_fabricante;
+
 -- Retorna un llistat on només apareguin aquells fabricants que no tenen cap producte associat.
 -- Retorna tots els productes del fabricador Lenovo. (Sense utilitzar INNER JOIN).
 -- Retorna totes les dades dels productes que tenen el mateix preu que el producte més car del fabricant Lenovo. (Sense usar INNER JOIN).
