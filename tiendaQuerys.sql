@@ -120,7 +120,12 @@ SELECT * FROM producto WHERE precio = (SELECT MAX(precio) FROM producto WHERE co
 --getMostExpensiveLenovo
 SELECT nombre FROM producto WHERE precio = (SELECT MAX(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
 
--- Llista el nom del producte més barat del fabricant Hewlett-Packard.
+--getCheapestHPProd
 SELECT nombre FROM producto WHERE precio = (SELECT MIN(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = "Hewlett-Packard" ));
--- Retorna tots els productes de la base de dades que tenen un preu major o igual al producte més car del fabricant Lenovo.
--- Llesta tots els productes del fabricant Asus que tenen un preu superior al preu mitjà de tots els seus productes.
+
+--getHigherThanLenovo
+SELECT * FROM producto WHERE precio >= (SELECT MAX(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
+
+--getHigherThanAsusAvg
+SELECT * FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Asus') AND precio > (SELECT AVG(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Asus'));
+
