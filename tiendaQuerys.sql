@@ -90,10 +90,21 @@ SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHE
 --getAllFromAsusHPSeagateIN
 SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE f.nombre IN ('Asus', 'Hewlett-Packard', 'Seagate');
 
--- Retorna un llistat amb el nom i el preu de tots els productes dels fabricants el nom dels quals acabi per la vocal e.
--- Retorna un llistat amb el nom i el preu de tots els productes el nom de fabricant dels quals contingui el caràcter w en el seu nom.
--- Retorna un llistat amb el nom de producte, preu i nom de fabricant, de tots els productes que tinguin un preu major o igual a 180 €. Ordena el resultat, en primer lloc, pel preu (en ordre descendent) i, en segon lloc, pel nom (en ordre ascendent).
--- Retorna un llistat amb el codi i el nom de fabricant, solament d'aquells fabricants que tenen productes associats en la base de dades.
+--getFabrEndE
+SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE f.nombre LIKE '%e';
+
+--get
+SELECT DISTINCT f.nombre, p.precio
+FROM fabricante f
+JOIN producto p ON f.codigo = p.codigo_fabricante
+WHERE f.nombre LIKE '%w%';
+
+--getByPrice180+
+SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE p.precio >= 180 ORDER BY p.precio DESC, p.nombre ASC;
+
+--getCode&Name
+SELECT p.codigo, f.nombre FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo;
+
 -- Retorna un llistat de tots els fabricants que existeixen en la base de dades, juntament amb els productes que té cadascun d'ells. El llistat haurà de mostrar també aquells fabricants que no tenen productes associats.
 -- Retorna un llistat on només apareguin aquells fabricants que no tenen cap producte associat.
 -- Retorna tots els productes del fabricador Lenovo. (Sense utilitzar INNER JOIN).
