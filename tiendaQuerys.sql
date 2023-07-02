@@ -111,9 +111,16 @@ SELECT f.nombre, p.nombre FROM farbicante f LEFT JOIN producto p ON f.codigo = p
 --getFabrNameWIthoutProd
 SELECT f.nombre FROM fabricante f LEFT JOIN producto p ON f.codigo = p.codigo_fabricante WHERE p.codigo_fabricante IS NULL;
 
--- Retorna tots els productes del fabricador Lenovo. (Sense utilitzar INNER JOIN).
--- Retorna totes les dades dels productes que tenen el mateix preu que el producte més car del fabricant Lenovo. (Sense usar INNER JOIN).
--- Llista el nom del producte més car del fabricant Lenovo.
+--getLenovoProd
+SELECT nombre FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo');
+
+--getAllSamePriceAsLenovo
+SELECT * FROM producto WHERE precio = (SELECT MAX(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
+
+--getMostExpensiveLenovo
+SELECT nombre FROM producto WHERE precio = (SELECT MAX(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = 'Lenovo'));
+
 -- Llista el nom del producte més barat del fabricant Hewlett-Packard.
+SELECT nombre FROM producto WHERE precio = (SELECT MIN(precio) FROM producto WHERE codigo_fabricante = (SELECT codigo FROM fabricante WHERE nombre = "Hewlett-Packard" ));
 -- Retorna tots els productes de la base de dades que tenen un preu major o igual al producte més car del fabricant Lenovo.
 -- Llesta tots els productes del fabricant Asus que tenen un preu superior al preu mitjà de tots els seus productes.
