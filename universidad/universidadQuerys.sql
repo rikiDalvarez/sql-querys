@@ -42,3 +42,37 @@ SELECT nombre FROM asignatura WHERE id_profesor IS NULL;
 
 --getdeptWithoutAsign
 SELECT d.nombre, a.nombre AS asignaturas FROM profesor pr LEFT JOIN asignatura a ON pr.id_profesor = a.id_profesor JOIN departamento d ON id_departamento = d.id WHERE a.nombre IS NULL GROUP BY d.nombre, a.nombre;
+
+--getTotalAlumn
+SELECT COUNT(tipo) AS total_alumnos FROM persona WHERE tipo = 'alumno';
+
+--getAlumnBorn1999
+SELECT COUNT(fecha_nacimiento) AS alumnos_year_1999 FROM persona WHERE tipo = 'alumno' AND YEAR(fecha_nacimiento) = 1999;
+
+--getTotalTeacherEachDEPT
+SELECT d.nombre AS departamento, COUNT(p.id) AS total_profesores FROM persona p JOIN profesor pr ON p.id = pr.id_profesor JOIN departamento d ON d.id = pr.id_departamento GROUP BY d.nombre;
+
+--getTotalDept
+SELECT d.nombre AS departamento, COUNT(p.id) AS total_profesores FROM departamento d LEFT JOIN profesor pr ON d.id = pr.id_departamento LEFT JOIN persona p ON pr.id_profesor = p.id GROUP BY d.nombre;
+
+--getGrausyAsig
+SELECT g.nombre AS grados, COUNT(a.nombre) AS total_asignaturas FROM grado g LEFT JOIN asignatura a ON g.id = a.id_grado GROUP BY g.nombre ORDER BY total_asignaturas DESC;
+
+--getGraus+40Asig
+SELECT g.nombre AS grados, COUNT(a.nombre) AS total_asignaturas FROM grado g LEFT JOIN asignatura a ON g.id = a.id_grado GROUP BY g.nombre HAVING COUNT(a.nombre) > 40 ORDER BY total_asignaturas DESC;
+
+--getGraus&TotalCred
+SELECT g.nombre AS grados, a.tipo AS tipo_asignatura, COUNT(a.creditos) AS total_creditos FROM grado g LEFT JOIN asignatura a ON g.id = a.id_grado GROUP BY g.nombre, a.tipo;
+
+--getNumberALumnEachGrau
+SELECT ce.anyo_inicio, COUNT(asma.id_alumno) AS total_alumnos_matriculados FROM curso_escolar ce LEFT JOIN alumno_se_matricula_asignatura asma ON ce.id = asma.id_curso_escolar GROUP BY ce.anyo_inicio;
+
+--getListaAsignProf
+SELECT p.id, p.nombre, p.apellido1, p.apellido2, COUNT(a.id) as total_asignaturas FROM persona p LEFT JOIN asignatura a ON p.id = a.id_profesor GROUP BY p.id, p.nombre, p.apellido1, p.apellido2;
+
+--getDataYoungestAlumn
+SELECT * FROM persona WHERE tipo = 'alumno' ORDER BY fecha_nacimiento LIMIT 1;
+
+--getProfDeptAsc
+SELECT p.id, p.nombre, p.apellido1, p.apellido2, pr.id_departamento, a.nombre AS asignaturas FROM persona p LEFT JOIN asignatura a ON p.id = a.id_profesor JOIN profesor pr ON p.id = pr.id_profesor WHERE a.nombre IS NULL;
+
