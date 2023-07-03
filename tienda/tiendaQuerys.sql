@@ -94,10 +94,7 @@ SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHE
 SELECT * FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE f.nombre LIKE '%e';
 
 --get
-SELECT DISTINCT f.nombre, p.precio
-FROM fabricante f
-JOIN producto p ON f.codigo = p.codigo_fabricante
-WHERE f.nombre LIKE '%w%';
+SELECT DISTINCT f.nombre, p.precio FROM fabricante f JOIN producto p ON f.codigo = p.codigo_fabricante WHERE f.nombre LIKE '%w%';
 
 --getByPrice180+
 SELECT p.nombre, p.precio, f.nombre FROM producto p JOIN fabricante f ON p.codigo_fabricante = f.codigo WHERE p.precio >= 180 ORDER BY p.precio DESC, p.nombre ASC;
