@@ -25,10 +25,20 @@ SELECT d.nombre FROM asignatura a JOIN grado g ON g.id = a.id_grado JOIN profeso
 --getAlumnMatri1819
 SELECT p.apellido1, p.apellido2, p.nombre FROM alumno_se_matricula_asignatura asma JOIN persona p ON asma.id_alumno = p.id JOIN curso_escolar ce ON asma.id_curso_escolar = ce.id WHERE anyo_inicio = 2018 AND anyo_fin = 2019 GROUP BY p.apellido1, p.apellido2, p.nombre ORDER BY p.apellido1, p.apellido2, p.nombre;
 
+--getAllTeacherAndDept
+SELECT p.apellido1, p.apellido2, p.nombre, d.nombre AS departamento FROM persona p LEFT JOIN profesor pr ON p.id = pr.id_profesor LEFT JOIN departamento d ON d.id = pr.id_departamento WHERE p.tipo = 'profesor' ORDER BY p.apellido1, p.apellido2, p.nombre;
 
--- Retorna un llistat amb els noms de tots els professors/es i els departaments que tenen vinculats. El llistat també ha de mostrar aquells professors/es que no tenen cap departament associat. El llistat ha de retornar quatre columnes, nom del departament, primer cognom, segon cognom i nom del professor/a. El resultat estarà ordenat alfabèticament de menor a major pel nom del departament, cognoms i el nom.
--- Retorna un llistat amb els professors/es que no estan associats a un departament.
--- Retorna un llistat amb els departaments que no tenen professors/es associats.
--- Retorna un llistat amb els professors/es que no imparteixen cap assignatura.
--- Retorna un llistat amb les assignatures que no tenen un professor/a assignat.
--- Retorna un llistat amb tots els departaments que no han impartit assignatures en cap curs escolar.
+--getTeacherNonRegistDept
+SELECT p.apellido1, p.apellido2, p.nombre, d.nombre AS departamento FROM persona p LEFT JOIN profesor pr ON p.id = pr.id_profesor LEFT JOIN departamento d ON d.id = pr.id_departamento WHERE p.tipo = 'profesor' AND d.nombre IS NULL ORDER BY p.apellido1, p.apellido2, p.nombre;
+
+--getDeptNonDeptRegister
+SELECT d.nombre FROM departamento d LEFT JOIN profesor pr ON d.id = pr.id_departamento WHERE pr.id_profesor IS NULL;
+
+--getTeacherN
+SELECT p.apellido1, p.apellido2, p.nombre FROM persona p LEFT JOIN asignatura a ON p.id = a.id_profesor WHERE p.tipo = 'profesor' AND a.id_profesor IS NULL ORDER BY apellido1, apellido2, nombre;
+
+--getAsignWithoutTeacher
+SELECT nombre FROM asignatura WHERE id_profesor IS NULL;
+
+--getdeptWithoutAsign
+SELECT d.nombre, a.nombre AS asignaturas FROM profesor pr LEFT JOIN asignatura a ON pr.id_profesor = a.id_profesor JOIN departamento d ON id_departamento = d.id WHERE a.nombre IS NULL GROUP BY d.nombre, a.nombre;
