@@ -1,5 +1,5 @@
 -- getAllStudents
-SELECT nombre, apelido1, apelido2 AS "full name" FROM persona ORDER BY apelido1, apelido2, nombre;
+SELECT nombre, apellido1, apellido2 AS "full name" FROM persona ORDER BY apellido1, apellido2, nombre;
 
 --getAlumnosSinTel
 SELECT apellido1, apellido2, nombre FROM persona WHERE tipo = 'alumno' AND telefono IS NULL ORDER BY apellido1, apellido2, nombre;
